@@ -1,0 +1,25 @@
+.post {
+    max-width: 100%;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+.post-title {
+    display: inline;
+    float: left;
+    padding-left: 1em;
+}
+
+.post-date {
+    display: inline;
+    float: right;
+    padding-right: 1em;
+}
+
+.post-description-button {
+    float: right;
+}

@@ -5,7 +5,6 @@ const LikeButton = () => {
     const [ likeButtonColor, setLikeButtonColor ] = useState("unliked")
     
     useEffect(() => {
-        console.log(`${likeButtonColor} changing`)
         setLikeButtonColor(liked ? "liked" : "unliked")
     }, [liked])
 

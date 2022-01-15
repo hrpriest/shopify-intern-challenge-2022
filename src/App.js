@@ -4,7 +4,7 @@ import './App.css'
 import axios from 'axios'
 
 const App = () => {
-    const [ posts, setPosts ] = useState([])
+    //const [ posts, setPosts ] = useState([])
     const [ test, setTest ] = useState("Get data")
 
     const get_data = () => {

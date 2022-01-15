@@ -4,7 +4,7 @@ import '../stylesheets/Post.css'
 
 const Post = () => {
     const [ descriptionVisible, setDescriptionVisible ] = useState(false)
-    const [ imageSrc, setImageSrc ] = useState("https://api.nasa.gov/assets/img/general/apod.jpg")
+    const imageSrc = "https://api.nasa.gov/assets/img/general/apod.jpg"
     const description = "hello there"
 
 
@@ -12,7 +12,7 @@ const Post = () => {
         <div className='post'>
             <h1 className='post-title'>Title</h1>
             <h2 className='post-date'>Date</h2>
-            <img className='post-image' src={imageSrc}></img>
+            <img className='post-image' src={imageSrc} alt="Space"></img>
             <div>
                 <LikeButton className='post-like-button'/>  
                 <button className='post-share-button' onClick={() => navigator.clipboard.writeText(imageSrc)}>share</button>

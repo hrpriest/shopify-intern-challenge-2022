@@ -1,11 +1,16 @@
-#post-container {
-    background-color: #4e5152;
-    width: 50%;
+main {
+    max-width: 620px;
     margin: 0 auto;
 }
 
-body {
-    color: white;
+.postContainer {
+    background-color: #4e5152;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.pageHeader {
+    margin-bottom: 0;
 }
 
 .App {

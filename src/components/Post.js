@@ -2,26 +2,29 @@ import React, { useState } from 'react'
 import LikeButton from './LikeButton'
 import '../stylesheets/Post.css'
 
-const Post = () => {
-    const [ descriptionVisible, setDescriptionVisible ] = useState(false)
-    const imageSrc = "https://api.nasa.gov/assets/img/general/apod.jpg"
-    const description = "hello there"
-
+const Post = ({ nasaData }) => {
+    const { date, explanation, media_type, title, url, copyright } = nasaData
+    const [descriptionVisible, setDescriptionVisible] = useState(false)
 
     return (
-        <div className='post'>
-            <h1 className='post-title'>Title</h1>
-            <h2 className='post-date'>Date</h2>
-            <img className='post-image' src={imageSrc} alt="Space"></img>
+        <article className='post'>
+            <h1 className='post-title'>{title}</h1>
+            <h2 className='post-date'>{date}</h2>
+            {media_type === 'video' ?
+                <iframe src={url} className='post-video' title={title} /> :
+                <img src={url} className='post-image' alt={title}></img>
+            }
             <div>
-                <LikeButton className='post-like-button'/>  
-                <button className='post-share-button' onClick={() => navigator.clipboard.writeText(imageSrc)}>share</button>
+                <LikeButton className='post-like-button' />
+                <button className='post-share-button' onClick={() => navigator.clipboard.writeText(url)}>share</button>
                 <button className='post-description-button' onClick={() => setDescriptionVisible(!descriptionVisible)}>Description</button>
             </div>
-                {(descriptionVisible ? <p>{description}</p> : <p></p>)}
-        </div>
+            <div>
+                {copyright ? <p>Copyright: {copyright}</p> : <></>}
+                {descriptionVisible ? <p>{explanation}</p> : <></>}
+            </div>
+        </article>
     )
 }
-
 
 export default Post

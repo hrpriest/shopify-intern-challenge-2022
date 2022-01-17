@@ -1,6 +1,9 @@
-export const getData = () => {
-    axios.get("/.netlify/functions/fetch-nasa-data?name=Hello")
+import axios from 'axios'
+
+//startDate cannot be after endDate
+export const fetchData = async (startDate, endDate) => {
+    return axios.get(`/.netlify/functions/fetch-nasa-data?startDate=${startDate}&endDate=${endDate}`)
         .then((response) => {
-            return response.data
+            return response
         })
 }

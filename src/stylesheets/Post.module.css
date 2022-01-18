@@ -1,0 +1,56 @@
+.post {
+    max-width: 100%;
+    border-left: solid;
+    border-left-color: #3f3f46;
+    border-right: solid;
+    border-right-color: #3f3f46;
+    border-bottom-style: solid;
+    border-bottom-color: #52525b;
+    background-color: #3f3f46;
+}
+
+.buttonContainer {
+    /* padding-bottom: 8px; */
+    margin: 8px;
+    margin-top: 0;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+.video {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+
+.title {
+    display: inline;
+    float: left;
+    margin: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.date {
+    display: inline;
+    float: right;
+    margin: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.descriptionButton {
+    float: right;
+}
+
+.description {
+    margin-top: 0;
+}
+
+.copyright {
+    margin-top: 0;
+}

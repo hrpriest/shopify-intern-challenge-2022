@@ -6,7 +6,7 @@ import moment from 'moment'
 
 const today = moment().format('YYYY-MM-DD')
 
-const nextStartDate = (endDate) => (moment(endDate).subtract(6, 'd').format('YYYY-MM-DD'))
+const nextStartDate = (endDate) => (moment(endDate).subtract(12, 'd').format('YYYY-MM-DD'))
 
 const App = () => {
     const [posts, setPosts] = useState([])
@@ -20,7 +20,7 @@ const App = () => {
 
     return (
         <main>
-            <header>
+            <header className={appStyles.headerContainer}>
                 <hgroup>
                     <h1 className={appStyles.pageHeader}>Spacesight</h1>
                     <h2 className={appStyles.subHeader}>Images courtesy of NASA</h2>

@@ -1,16 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
-const LikeButton = () => {
-    const [liked, setLiked] = useState(false)
-    const [likeButtonColor, setLikeButtonColor] = useState("unliked")
+function checkIfLiked(key) {
+    return localStorage.getItem(key)
+}
 
-    useEffect(() => {
-        setLikeButtonColor(liked ? "liked" : "unliked")
-    }, [liked])
+const LikeButton = ({ date }) => {
+    const [liked, setLiked] = useState(checkIfLiked(date))
 
+    function toggleLiked() {
+        if (liked) {
+            localStorage.removeItem(date)
+            setLiked(false)
+        } else {
+            localStorage.setItem(date, 'true')
+            setLiked(true)
+        }
+    }
 
     return (
-        <button onClick={() => setLiked(!liked)}>{likeButtonColor}</button>
+        <button onClick={toggleLiked}>
+            {liked ? 'unlike' : 'like'}
+        </button>
     )
 
 }

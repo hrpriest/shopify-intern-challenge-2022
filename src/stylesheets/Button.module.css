@@ -10,3 +10,11 @@
 .likeButton {
     margin-right: 8px;
 }
+
+.loadButtonContainer {
+    text-align: center;
+}
+
+.loadButton {
+    margin: 8px 0;
+}

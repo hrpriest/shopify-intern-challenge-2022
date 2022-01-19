@@ -5,55 +5,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import { PostShareContextProvider } from "./contexts/PostShareContext";
+import Button from "./components/Button";
 import Post from "./components/Post";
 import Link from "./components/Link";
 import Loading from "./components/Loading";
 import appStyles from "./stylesheets/App.module.css";
+import buttonStyles from "./stylesheets/Button.module.css";
 import { fetchData } from "./nasaApi";
 
 const today = dayjs().format("YYYY-MM-DD");
 
 function nextStartDate(endDate) {
-    return dayjs(endDate).subtract(19, "d").format("YYYY-MM-DD");
+    return dayjs(endDate).subtract(14, "d").format("YYYY-MM-DD");
 }
 
-// function minusOneDay(date) {
-//     return dayjs(date).subtract(1, "d").format("YYYY-MM-DD")
-// }
+function minusOneDay(date) {
+    return dayjs(date).subtract(1, "d").format("YYYY-MM-DD");
+}
 
 export default function App() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [errorLoading, setErrorLoading] = useState(false);
 
-    //const [observerTarget, setObserverTarget] = useState("")
-
-    // const fetchPosts = useCallback(
-    //     (endDate) => {
-    //         setLoading(true);
-    //         fetchData(nextStartDate(endDate), endDate).then((response) => {
-    //             if (response.status !== 200) {
-    //                 setErrorLoading(true);
-    //             } else {
-    //                 setPosts((posts) => {
-    //                     console.log(posts);
-    //                     console.log(response.data);
-    //                     console.log(response.data.reverse());
-
-    //                     const newPost = posts.concat(response.data);
-    //                     console.log(newPost);
-    //                     return newPost;
-    //                 });
-    //                 setLoading(false);
-    //                 setErrorLoading(false);
-    //             }
-    //         });
-    //     },
-    //     [setLoading, setPosts, setErrorLoading]
-    // );
-
     const fetchPosts = useCallback(
         (endDate) => {
+            console.log(endDate);
             setLoading(true);
             fetchData(nextStartDate(endDate), endDate).then((response) => {
                 if (response.status !== 200) {
@@ -97,6 +74,18 @@ export default function App() {
                         <Post key={post.date} nasaData={post}></Post>
                     ))}
                 </PostShareContextProvider>
+            </div>
+            <div className={buttonStyles.loadButtonContainer}>
+                {loading ? null : (
+                    <Button
+                        onClick={() =>
+                            fetchPosts(minusOneDay(posts.at(-1).date))
+                        }
+                        className={buttonStyles.loadButton}
+                    >
+                        Load More Posts
+                    </Button>
+                )}
             </div>
             {loading ? <Loading errorLoading={errorLoading} /> : null}
         </main>

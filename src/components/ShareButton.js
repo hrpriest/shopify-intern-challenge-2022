@@ -15,7 +15,10 @@ export default function ShareButton({ url, mediaType, date }) {
 
     return (
         <Button
-            onClick={() => setLastShared(date)}
+            onClick={() => {
+                navigator.clipboard.writeText(url);
+                setLastShared(date);
+            }}
             icon={lastShared === date ? shareFilled : shareEmpty}
         >
             &nbsp;{" "}

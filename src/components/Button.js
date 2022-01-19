@@ -15,7 +15,7 @@ export default function Button({
             onClick={onClick}
             className={`${buttonStyles.btn} ${className}`}
         >
-            <FontAwesomeIcon icon={icon} />
+            {icon ? <FontAwesomeIcon icon={icon} /> : null}
             {children}
         </button>
     );

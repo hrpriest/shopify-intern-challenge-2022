@@ -30,21 +30,21 @@ export default function App() {
 
     const fetchPosts = useCallback(
         (endDate) => {
-            console.log(endDate);
             setLoading(true);
-            fetchData(nextStartDate(endDate), endDate).then((response) => {
-                if (response.status !== 200) {
-                    setErrorLoading(true);
-                    setLoading(false);
-                } else {
+            fetchData(nextStartDate(endDate), endDate)
+                .then((response) => {
                     setPosts((posts) => {
                         const copiedData = [...response.data];
                         return posts.concat(copiedData.reverse());
                     });
                     setLoading(false);
                     setErrorLoading(false);
-                }
-            });
+                })
+                .catch(() => {
+                    console.log("catch triggered");
+                    setErrorLoading(true);
+                    setLoading(false);
+                });
         },
         [setLoading, setErrorLoading, setPosts]
     );
@@ -76,7 +76,7 @@ export default function App() {
                 </PostShareContextProvider>
             </div>
             <div className={buttonStyles.loadButtonContainer}>
-                {loading ? null : (
+                {loading || errorLoading ? null : (
                     <Button
                         onClick={() =>
                             fetchPosts(minusOneDay(posts.at(-1).date))
@@ -87,7 +87,9 @@ export default function App() {
                     </Button>
                 )}
             </div>
-            {loading ? <Loading errorLoading={errorLoading} /> : null}
+            {loading || errorLoading ? (
+                <Loading errorLoading={errorLoading} />
+            ) : null}
         </main>
     );
 }

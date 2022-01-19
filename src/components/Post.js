@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
 
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
@@ -9,28 +10,10 @@ import LikeButton from "./LikeButton";
 import postStyles from "../stylesheets/Post.module.css";
 import Button from "./Button";
 
+dayjs.extend(advancedFormat);
+
 function humanFriendlyDate(date) {
-    const re = /.+-.+-(.+)/;
-    const match = date.match(re);
-    const day = match[1];
-
-    let ordinal;
-    switch (day) {
-        case "01":
-            ordinal = "st";
-            break;
-        case "02":
-            ordinal = "nd";
-            break;
-        case "03":
-            ordinal = "rd";
-            break;
-        default:
-            ordinal = "th";
-            break;
-    }
-
-    return dayjs(date).format(`MMMM D[${ordinal}] YYYY`);
+    return dayjs(date).format("MMMM Do YYYY");
 }
 
 export default function Post({ nasaData }) {

@@ -1,0 +1,22 @@
+.spinnerContainer {
+    text-align: center;
+    font-size: 100px;
+}
+
+.spinner {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    align-content: center;
+}
+
+.spinnerFailed {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    align-content: center;
+    color: #ef4444;
+}
+
+.message {
+    text-align: center;
+    font-size: small;
+}

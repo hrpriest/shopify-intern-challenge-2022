@@ -1,39 +1,69 @@
-import React, { useState, useEffect } from 'react'
-import Post from './components/Post'
-import appStyles from './stylesheets/App.module.css'
-import { fetchData } from './nasaApi'
-import moment from 'moment'
+import React, { useState, useEffect, useCallback } from "react"
+import dayjs from "dayjs"
 
-const today = moment().format('YYYY-MM-DD')
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
-const nextStartDate = (endDate) => (moment(endDate).subtract(12, 'd').format('YYYY-MM-DD'))
+import Post from "./components/Post"
+import Link from "./components/Link"
+import Loading from "./components/Loading"
+import appStyles from "./stylesheets/App.module.css"
+import { fetchData } from "./nasaApi"
 
-const App = () => {
+
+
+const today = dayjs().format("YYYY-MM-DD")
+
+function nextStartDate(endDate) {
+    return dayjs(endDate).subtract(19, "d").format("YYYY-MM-DD")
+}
+
+// function minusOneDay(date) {
+//     return dayjs(date).subtract(1, "d").format("YYYY-MM-DD")
+// }
+
+export default function App() {
     const [posts, setPosts] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [errorLoading, setErrorLoading] = useState(false)
+    //const [observerTarget, setObserverTarget] = useState("")
+
+    const fetchPosts = useCallback((endDate) => {
+        setLoading(true)
+        fetchData(nextStartDate(endDate), endDate)
+            .then(response => {
+                if (response.status !== 200) {
+                    setErrorLoading(true)
+                } else {
+                    setPosts(posts.concat(response.data.reverse()))
+                    setLoading(false)
+                    setErrorLoading(true)
+                }
+            })
+    }, [setLoading, setPosts, setErrorLoading, posts])
 
     useEffect(() => {
-        fetchData(nextStartDate(today), today)
-            .then(response => {
-                setPosts(response.data.reverse())
-            })
-    }, [])
+        fetchPosts(today)
+    }, [fetchPosts])
+
 
     return (
         <main>
             <header className={appStyles.headerContainer}>
-                <hgroup>
-                    <h1 className={appStyles.pageHeader}>Spacesight</h1>
-                    <h2 className={appStyles.subHeader}>Images courtesy of NASA</h2>
-                </hgroup>
+                <h1 className={appStyles.pageHeader}>Spacesight</h1>
+                <h2 className={appStyles.subHeader}>Images courtesy of NASA</h2>
                 <nav>
-                    <a href="https://github.com/hrpriest/shopify-intern-challenge-2022" target="_blank" rel='noreferrer' >Github Repo</a>
+                    <Link href="https://github.com/hrpriest/shopify-intern-challenge-2022" target="_blank">
+                        <FontAwesomeIcon icon={faGithub} />
+                        &nbsp; Check out the code
+                    </Link>
                 </nav>
             </header>
-            <div className={appStyles.postContainer}>
+            <div>
                 {posts.map(post => <Post key={post.date} nasaData={post}></Post>)}
-            </div >
+            </div>
+            {loading ? <Loading errorLoading={errorLoading} /> : null}
+
         </main>
     )
 }
-
-export default App;

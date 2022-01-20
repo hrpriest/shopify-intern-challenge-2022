@@ -5,11 +5,9 @@
 }
 
 .buttonContainer {
-    /* padding-bottom: 8px; */
     margin: 8px;
-    margin-top: 4px;
-    margin-bottom: 0;
     padding-bottom: 8px;
+    height: 29px;
 }
 
 .image {
@@ -43,16 +41,14 @@
     margin: 8px;
 }
 
-.descriptionButton {
-    float: right;
-}
-
 .description {
     margin-top: 0;
     padding-bottom: 8px;
 }
 
 .copyright {
+    font-size: 13px;
+    color: #aaa;
     margin-top: 0;
     margin-bottom: 0;
     padding-bottom: 8px;

@@ -7,6 +7,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import ShareButton from "./ShareButton";
 import LikeButton from "./LikeButton";
+import buttonStyles from "../stylesheets/Button.module.css";
 import postStyles from "../stylesheets/Post.module.css";
 import Button from "./Button";
 
@@ -43,7 +44,7 @@ export default function Post({ nasaData }) {
                 <LikeButton date={date} />
                 <ShareButton mediaType={mediaType} url={url} date={date} />
                 <Button
-                    className={postStyles.descriptionButton}
+                    className={buttonStyles.descriptionButton}
                     onClick={() => setDescriptionVisible(!descriptionVisible)}
                     icon={descriptionVisible ? faEye : faEyeSlash}
                 >

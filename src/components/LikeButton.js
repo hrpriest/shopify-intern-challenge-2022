@@ -28,6 +28,7 @@ export default function LikeButton({ date }) {
             onClick={toggleLiked}
             className={buttonStyles.likeButton}
             icon={liked ? filledHeart : emptyHeart}
+            iconStyle={liked ? { color: "#ef4444" } : null}
         >
             &nbsp; {liked ? "Unlike" : "Like"}
         </Button>

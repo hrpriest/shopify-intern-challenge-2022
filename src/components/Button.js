@@ -9,13 +9,14 @@ export default function Button({
     onClick = () => null,
     className = "",
     icon = null,
+    iconStyle,
 }) {
     return (
         <button
             onClick={onClick}
             className={`${buttonStyles.btn} ${className}`}
         >
-            {icon ? <FontAwesomeIcon icon={icon} /> : null}
+            {icon ? <FontAwesomeIcon icon={icon} style={iconStyle} /> : null}
             {children}
         </button>
     );

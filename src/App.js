@@ -41,7 +41,6 @@ export default function App() {
                     setErrorLoading(false);
                 })
                 .catch(() => {
-                    console.log("catch triggered");
                     setErrorLoading(true);
                     setLoading(false);
                 });

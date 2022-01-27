@@ -1,4 +1,9 @@
-# This Project is Hosted on Netlify
+# Important Note 2022/01/27
+
+The NASA APOD API is now returning a status code of `500 INTERNAL SERVER ERROR` for every single one of my requests. I am unsure of how long this has been going on for or what is causing it.
+
+
+# This Project Is Hosted On Netlify
 
 https://focused-lumiere-d23ffa.netlify.app/
 
@@ -38,4 +43,4 @@ The accessibility features and html semantics could certainly be improved as it 
 
 While for the most part I am happy with the CSS, there is always room for improvement. Perhaps I would get better results using a UI library such as Chakra UI or Materialize.
 
-I will continue working on this project to add these features in the future. They will be implemented on a seperate branch in the repo in case modifying the project after the submission date is prohibited.
+I will continue working on this project to add these features in the future. These features will be implemented on the `latest` branch in case modifying the project after the submission date is prohibited.

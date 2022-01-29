@@ -1,8 +1,3 @@
-# Important Note 2022/01/27
-
-The NASA APOD API is now returning a status code of `500 INTERNAL SERVER ERROR` for every single one of my requests. I am unsure of how long this has been going on for or what is causing it.
-
-
 # This Project Is Hosted On Netlify
 
 https://focused-lumiere-d23ffa.netlify.app/
